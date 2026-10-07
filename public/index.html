@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Emergency Assistance</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     LOGIN PAGE
+================================================== -->
+
+<section id="loginPage" class="page active">
+
+    <div class="login-container">
+
+        <div class="logo-circle">
+            🚨
+        </div>
+
+        <h1>
+            Emergency
+            <span>Assistance</span>
+        </h1>
+
+        <p class="tagline">
+            Your safety. One tap away.
+        </p>
+
+
+        <div class="white-card">
+
+            <h2>
+                Welcome Back 👋
+            </h2>
+
+            <p class="small-text">
+                Enter your mobile number to continue
+            </p>
+
+
+            <label>
+                Mobile Number
+            </label>
+
+
+            <div class="mobile-input">
+
+                <select id="countryCode">
+
+                    <option value="+91">
+                        🇮🇳 +91
+                    </option>
+
+                    <option value="+1">
+                        🇺🇸 +1
+                    </option>
+
+                    <option value="+44">
+                        🇬🇧 +44
+                    </option>
+
+                </select>
+
+
+                <input
+                    type="tel"
+                    id="phoneNumber"
+                    placeholder="Enter mobile number"
+                    maxlength="10"
+                >
+
+            </div>
+
+
+            <button
+                class="primary-button"
+                onclick="sendOTP()"
+            >
+                SEND OTP
+                <span>→</span>
+            </button>
+
+
+            <p class="terms">
+                By continuing, you agree to use the
+                emergency service responsibly.
+            </p>
+
+        </div>
+
+
+        <div class="security-text">
+            🔒 Your information is kept secure
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     OTP PAGE
+================================================== -->
+
+<section id="otpPage" class="page">
+
+    <div class="login-container">
+
+        <div class="logo-circle">
+            🔐
+        </div>
+
+        <h1>
+            Verify <span>Mobile</span>
+        </h1>
+
+        <p class="tagline">
+            We need to verify your number
+        </p>
+
+
+        <div class="white-card">
+
+            <div class="otp-icon">
+                📱
+            </div>
+
+            <h2>
+                Enter OTP
+            </h2>
+
+            <p class="small-text">
+                Enter the 6-digit verification code
+            </p>
+
+
+            <input
+                id="otp"
+                class="otp-input"
+                type="text"
+                placeholder="• • • • • •"
+                maxlength="6"
+            >
+
+
+            <button
+                class="primary-button"
+                onclick="verifyOTP()"
+            >
+                VERIFY OTP
+                <span>✓</span>
+            </button>
+
+
+            <button
+                class="text-button"
+                onclick="showPage('loginPage')"
+            >
+                ← Change Mobile Number
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     DASHBOARD
+================================================== -->
+
+<section id="dashboardPage" class="page dashboard-page">
+
+
+    <!-- TOP HEADER -->
+
+    <div class="dashboard-header">
+
+        <div>
+
+            <div class="brand-small">
+                🚨 Emergency Assistance
+            </div>
+
+            <h1>
+                Hello, <span id="userName">User</span> 👋
+            </h1>
+
+            <p>
+                Stay safe. We're here to help.
+            </p>
+
+        </div>
+
+
+        <button
+            class="profile-button"
+            onclick="logout()"
+        >
+            👤
+        </button>
+
+    </div>
+
+
+
+    <!-- SOS AREA -->
+
+    <div class="sos-section">
+
+        <div class="sos-title">
+            Emergency SOS
+        </div>
+
+        <p>
+            Press the button only in an emergency
+        </p>
+
+
+        <button
+            class="sos-button"
+            onclick="startSOS()"
+        >
+
+            <strong>
+                SOS
+            </strong>
+
+            <span>
+                EMERGENCY
+            </span>
+
+        </button>
+
+
+        <div class="sos-info">
+            📍 Location + Emergency Contacts
+        </div>
+
+    </div>
+
+
+
+    <!-- QUICK ACTIONS -->
+
+    <h2 class="section-title">
+        Quick Actions
+    </h2>
+
+
+    <div class="action-grid">
+
+
+        <!-- LOCATION -->
+
+        <div
+            class="action-card location-card"
+            onclick="getLocation()"
+        >
+
+            <div class="action-icon">
+                📍
+            </div>
+
+            <h3>
+                My Location
+            </h3>
+
+            <p>
+                Get your current location
+            </p>
+
+        </div>
+
+
+
+        <!-- HOSPITAL -->
+
+        <div
+            class="action-card hospital-card"
+            onclick="findHospital()"
+        >
+
+            <div class="action-icon">
+                🏥
+            </div>
+
+            <h3>
+                Nearby Hospital
+            </h3>
+
+            <p>
+                Find hospitals near you
+            </p>
+
+        </div>
+
+
+
+        <!-- CONTACTS -->
+
+        <div
+            class="action-card contacts-card"
+            onclick="showPage('contactsPage')"
+        >
+
+            <div class="action-icon">
+                👥
+            </div>
+
+            <h3>
+                Emergency Contacts
+            </h3>
+
+            <p>
+                Manage your 2 contacts
+            </p>
+
+        </div>
+
+
+
+        <!-- MEDICAL -->
+
+        <div
+            class="action-card medical-card"
+            onclick="showPage('medicalPage')"
+        >
+
+            <div class="action-icon">
+                🩺
+            </div>
+
+            <h3>
+                Medical Card
+            </h3>
+
+            <p>
+                Your medical information
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- RESULT -->
+
+    <div
+        id="resultBox"
+        class="result-card"
+    >
+
+        <div class="result-icon">
+            🛡️
+        </div>
+
+        <div>
+
+            <h3>
+                You're Protected
+            </h3>
+
+            <p id="resultText">
+                Your emergency information
+                will appear here.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</section>
+
+
+
+<!-- ==================================================
+     CONTACT PAGE
+================================================== -->
+
+<section id="contactsPage" class="page inner-page">
+
+    <div class="inner-container">
+
+
+        <button
+            class="back-button"
+            onclick="showPage('dashboardPage')"
+        >
+            ← Back
+        </button>
+
+
+        <div class="inner-heading">
+
+            <div class="heading-icon">
+                👥
+            </div>
+
+            <div>
+
+                <h1>
+                    Emergency Contacts
+                </h1>
+
+                <p>
+                    Add exactly 2 trusted contacts
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- CONTACT 1 -->
+
+        <div class="form-card">
+
+            <div class="contact-title">
+
+                <span>
+                    01
+                </span>
+
+                <h2>
+                    Primary Contact
+                </h2>
+
+            </div>
+
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                id="contact1Name"
+                type="text"
+                placeholder="Enter contact name"
+            >
+
+
+            <label>
+                Mobile Number
+            </label>
+
+            <input
+                id="contact1Number"
+                type="tel"
+                placeholder="10 digit mobile number"
+                maxlength="10"
+            >
+
+        </div>
+
+
+
+        <!-- CONTACT 2 -->
+
+        <div class="form-card">
+
+            <div class="contact-title">
+
+                <span>
+                    02
+                </span>
+
+                <h2>
+                    Secondary Contact
+                </h2>
+
+            </div>
+
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                id="contact2Name"
+                type="text"
+                placeholder="Enter contact name"
+            >
+
+
+            <label>
+                Mobile Number
+            </label>
+
+            <input
+                id="contact2Number"
+                type="tel"
+                placeholder="10 digit mobile number"
+                maxlength="10"
+            >
+
+        </div>
+
+
+        <button
+            class="save-button"
+            onclick="saveContacts()"
+        >
+            💾 SAVE CONTACTS
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==================================================
+     MEDICAL PAGE
+================================================== -->
+
+<section id="medicalPage" class="page inner-page">
+
+    <div class="inner-container">
+
+
+        <button
+            class="back-button"
+            onclick="showPage('dashboardPage')"
+        >
+            ← Back
+        </button>
+
+
+        <div class="inner-heading">
+
+            <div class="heading-icon">
+                🩺
+            </div>
+
+            <div>
+
+                <h1>
+                    Medical Card
+                </h1>
+
+                <p>
+                    Important information for emergencies
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="form-card">
+
+
+            <label>
+                Full Name
+            </label>
+
+            <input
+                id="medicalName"
+                type="text"
+                placeholder="Your full name"
+            >
+
+
+            <label>
+                Age
+            </label>
+
+            <input
+                id="medicalAge"
+                type="number"
+                placeholder="Your age"
+            >
+
+
+            <label>
+                Gender
+            </label>
+
+            <select id="medicalGender">
+
+                <option value="">
+                    Select gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <label>
+                Blood Group
+            </label>
+
+            <select id="bloodGroup">
+
+                <option value="">
+                    Select blood group
+                </option>
+
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>O+</option>
+                <option>O-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+
+            </select>
+
+
+            <label>
+                Allergies
+            </label>
+
+            <textarea
+                id="allergies"
+                placeholder="Example: Penicillin allergy"
+            ></textarea>
+
+
+            <label>
+                Medical Conditions
+            </label>
+
+            <textarea
+                id="conditions"
+                placeholder="Example: Asthma, Diabetes"
+            ></textarea>
+
+
+            <label>
+                Current Medicines
+            </label>
+
+            <textarea
+                id="medicines"
+                placeholder="Enter current medicines"
+            ></textarea>
+
+
+        </div>
+
+
+        <button
+            class="save-button"
+            onclick="saveMedicalCard()"
+        >
+            💾 SAVE MEDICAL CARD
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script src="app.js"></script>
+
+</body>
+
+</html>
